@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>what happened - NEKOFRED</title>
+    <style>
+        body {
+            background-color: #FFFFFF;
+            color: #000000;
+            font-family: "Arial Black", Gadget, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            border: 5px solid #000000;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            text-decoration: underline;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            border: 5px solid #000000;
+            margin-bottom: 20px;
+        }
+
+        .warning-text {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .faq {
+            text-align: left;
+            border-top: 2px solid #000000;
+            padding-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .faq h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .faq p {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #000000;
+            color: #FF0000;
+            border: none;
+            padding: 15px 40px;
+            font-family: "Arial Black", sans-serif;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        button:active {
+            transform: scale(0.95);
+            background-color: #333333;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>what happened</h1>
+
+        <img src="https://img.sanishtech.com/u/0567737ba34313628e62221768b7836f.jpg" alt="Bad Apple Project Image" class="main-image">
+
+        <div class="warning-text">
+            THIS WEBSITE IS INSPIRED BY THE "BAD APPLE" PROJECT. 
+            PROCEED WITH CAUTION.
+        </div>
+
+        <div class="faq">
+            <h2>What the fuck is this website?</h2>
+            <p>This website is an interactive script that spawns multiple bouncing windows on your screen. It is designed to simulate a chaotic, uncontrollable environment where windows replicate and move faster as you attempt to close them or interact with the page.</p>
+        </div>
+
+        <button id="okBtn">Download Anti virus</button>
+
+        <footer>
+            BY NEKOFRED
+        </footer>
+    </div>
+
+    <audio id="bgAudio" src="https://www.image2url.com/r2/default/audio/1776267754728-6e47a7fa-9b86-4ad8-9f6f-365aabd9dc88.mp3" loop></audio>
+
+    <script>
+        const okBtn = document.getElementById('okBtn');
+        const bgAudio = document.getElementById('bgAudio');
+        const currentUrl = window.location.href;
+        const windowFeatures = "width=500,height=500,menubar=no,toolbar=no,location=no,status=no";
+
+        if (!window.opener) {
+            localStorage.setItem('bounceSpeed', '1');
+        }
+
+        window.addEventListener('beforeunload', () => {
+            let speed = parseFloat(localStorage.getItem('bounceSpeed') || 1);
+            localStorage.setItem('bounceSpeed', (speed + 0.5).toString());
+        });
+
+        if (window.opener) {
+            let x = Math.random() * (screen.availWidth - 500);
+            let y = Math.random() * (screen.availHeight - 500);
+            let dx = (Math.random() * 10) + 2;
+            let dy = (Math.random() * 10) + 2;
+            
+            setInterval(() => {
+                let speedMult = parseFloat(localStorage.getItem('bounceSpeed') || 1);
+                x += dx * speedMult;
+                y += dy * speedMult;
+                
+                if (x <= 0 || x >= screen.availWidth - 500) {
+                    dx = -dx;
+                }
+                if (y <= 0 || y >= screen.availHeight - 500) {
+                    dy = -dy;
+                }
+                
+                window.moveTo(x, y);
+            }, 10);
+            
+            bgAudio.play().catch(e => console.log("Audio autoplay blocked by browser until user interaction."));
+        }
+
+        setTimeout(() => {
+            for (let i = 0; i < 5; i++) {
+                window.open(currentUrl, '_blank', windowFeatures);
+            }
+        }, 5000);
+
+        okBtn.addEventListener('click', () => {
+            bgAudio.play();
+            window.location.href = 'https://drive.usercontent.google.com/download?id=13VeccIwxVJgNIiBdY57oQD88Ci9iC3N7&export=download&authuser=0';
+        });
+
+        setInterval(() => {
+            alert("Reimu Hakurei IS THE BEST!!!");
+        }, 30000);
+    </script>
+</body>
+</html>
+
